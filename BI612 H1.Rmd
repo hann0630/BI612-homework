@@ -1,0 +1,117 @@
+---
+title: "Homework 1"
+author: "Natasha Hannan"
+date: "January 15, 20120"
+output:
+
+---
+-->
+#Question 1
+**Question 1: create a new vector in R with the data for each strain**
+```{r}
+transgenic.A=c(0.17,0.20,0.13,0.20,0.24,0.25,0.15,0.21,0.21)
+transgenic.B=c(0.47,0.21,0.34,0.32,0.33,0.29,0.18,0.20,0.25)
+common.strain=c(0.44,0.33,0.37,0.33,0.31,0.27,0.22,0.30,0.28)
+```
+
+
+#Question 2
+**Question 2: What is the difference between the means of the two transgenic strains?**
+```{r}
+mean(transgenic.A-transgenic.B)
+```
+
+
+#Question 3
+**Question 3: What is the difference between the means of the common strain and transgenic strain A?**
+
+```{r}
+mean(common.strain-transgenic.A)
+```
+
+#Question 4
+**Question 4: Create a histogram of the hydrogen peroxide concentrations in the common strain**
+
+```{r}
+hist(common.strain)
+```
+
+
+#Question 5
+**Question 5: Enter each coloumn as a vector in R, and collect these into a cingla data frame. Name the hydrogen peroxide column 'Peroxide' and the fungal growth rate colomn 'Growth.rate'.**
+
+```{r}
+hydrogen=c(0.27,0.21,0.34,0.32,0.24,0.29,0.18,0.20,0.29)
+fungal=c(1.79,1.01,1.71,1.89,1.41,1.15,1.13,1.20,1.10)
+my.data=data.frame("Peroxide"=hydrogen,"Growth.rate"=fungal)
+```
+
+#Question 6
+**Question 6: Create a scatter plot of fungal growth rate versus peroxide concentration from the newly created data frame. Make sure to label the plot properly (lable the axes and make sure to provide the measurement units.**
+
+```{r}
+plot(my.data$Peroxide,my.data$Growth.rate,xlab="Hydrogen Peroxide Concentration (umoles/gm)",ylab="Fungal Growth Rate (cm/day)")
+```
+
+
+#Question 7
+**Question 7: How does the growth rate of the fungus change with increasing levels of hydrogen peroxide, and does this agree or disagree with the hypothesis?**
+
+With increasing levels of hydrogen peroxide the scatter plot shows an increase in the fungal growth rate in leaf tissue, therefore, this does not agree with the hypothesis.
+
+#Question 8
+**Question 8: Re-create the table in Excel and save as a common seperated values fule. Read the data into R using the read.csv functions.**
+```{r}
+setwd("~/")
+my.data=read.csv("H1.csv")
+View(my.data)
+```
+
+
+#Question 9
+**Question 9: Use the table function to create a contingency table showing the number of aborted and successful nesting attempts for each species.**
+```{r}
+my.table=table(my.data)
+my.table
+```
+       
+#Question 10
+**Question 10: Make and label a grouped barplot that represents the nesting patterns for all three turtles species. Color bars for successful green and the bars for aborted red. MAke sure to label axes.**
+```{r}
+barplot(my.table,beside=T,xlab="Species",ylab="Frequency",col=c('red','green'))
+```
+#Question 11
+**Question 11:*Determine the mean and standard deviation of successful nesting events among all marine turtles**
+
+```{r}
+nest.survival=c(my.table[2,1],my.table[2,2],my.table[2,3])
+mean(nest.survival)
+sd(nest.survival)
+
+```
+
+
+#Question 12
+**Question 12:Calculate the proportion of failed nesting attempts for each species. Based on this, which species would you choose as needing the greatest conservation effort. **
+
+```{r}
+my.table[1,]/(my.table[1,]+my.table[2,])
+
+```
+
+Due to the high proportion of failed nesting attempts, the Hawksbill would need the greatest conservation effort.
+
+#Question 13
+**Question 13: Enter data into Excel and import the file to R. **
+```{r}
+setwd("~/")
+second.data=read.csv("H1.1.csv")
+
+```
+
+
+#Question 14
+**Question 14:**
+
+#Question 15
+**Question 15: **
