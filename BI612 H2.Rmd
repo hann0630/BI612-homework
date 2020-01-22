@@ -1,0 +1,131 @@
+---
+title: "BI612 H2"
+author: "Natasha Hannan"
+output: html_document
+---
+
+#Scenario 1
+#a)State the null and alternative hypothesis
+null hypothesis: there is no difference between shrimp catch from ships in 2009 and 2010
+alternative hypothesis: there is a difference between shrimp catch from ships in 2009 and 2010
+
+#b)Create a histogram
+```{r}
+firstcatch=c(91900,95200,61900,73600,114300,117000,129500,74200,112700,152100,90700,89400,127500,142200)
+secondcatch=c(82900,86700,46900,41300,91600,100400,128400,55900,101700,139100,79300,76100,114100,139800)
+hist(firstcatch-secondcatch)
+```
+
+
+#c)Explain what type of test should be used to test the hypothesis
+In order to test the hypothesis, a paired t-test should be used
+
+#d)Run the appropriate test, and display the summary output
+```{r}
+t.test(firstcatch, secondcatch, paired=TRUE)
+```
+#e)Explicitely state the critical and observed value of the test statistic
+```{r}
+qt(0.975,13)
+qt(0.025,13)
+observed=6.3808
+```
+
+#f)Indicate what conclusion you would draw from the hypothesis test
+The p-value is small than 0.05, therefore we reject the null hypothesis. This means that there is a difference between shrimp catch from ships in 2009 and 2010 
+
+
+
+#Scenario 2
+#a)State the null and alternative hypothesis
+null hypothesis: the phosphorus levels in the lake are within the guidelines
+alternative hypothesis: the phosporus levels in the lake are higther than the guidelines
+
+#b)Create a histogram
+```{r}
+phosphorous=c(18.4,12.9,15.3,18.3,15.6,23.3,16.5,12.3,24.6,16.2)
+hist(phosphorous)
+```
+
+#c)Explain what type of test should be used to test the hypothesis
+In order to test the hypothesis, a one-sample t-test should be used
+
+#d)Run the appropriate test, and display the summary output
+```{r}
+t.test(phosphorous, mu=15)
+```
+#e)Explicitely state the critical and observed value of the test statistic
+```{r}
+qt(0.95,9)
+observed=1.8462
+```
+
+#f)Indicate what conclusion you would draw from the hypothesis test
+
+```{r}
+p.value=0.09794/2
+p.value
+```
+The p-value is small than 0.05, therefore we reject the null hypothesis. This means that the phosphorus levels in the lake are higher than the guidelines. 
+
+
+
+
+#Scenario 3
+#a)State the null and alternative hypothesis
+null hypothesis: there is no difference in salmon growth rate when fed a vegetarian or carnivorous diet.
+alternative hypothesis: there is a difference in salmon growth rate when fed a vegetarian or carnivorous diet.
+
+#b)Create a histogram
+```{r}
+carnivorous=c(2.3,1.8,1.9,1.8,2.1,2.3,2.0,2.2,2.2,1.5,1.8,2.1,2.3,2.2,2.3)
+vegetarian=c(1.6,1.1,0.7,1.0,1.0,0.9,1.2,0.8,0.9,0.6,0.7,0.6,0.8,0.8,1.1)
+hist(carnivorous)
+hist(vegetarian)
+```
+
+
+#c)Explain what type of test should be used to test the hypothesis
+In order to test the hypothesis, an independent two-sample t-test should be used
+
+#d)Run the appropriate test, and display the summary output
+```{r}
+t.test(carnivorous,vegetarian)
+```
+#e)Explicitely state the critical and observed value of the test statistic
+```{r}
+qt(0.975,27.862)
+qt(0.025,27.862)
+observed=12.237
+```
+
+#f)Indicate what conclusion you would draw from the hypothesis test
+The p-value is small than 0.05, therefore we reject the null hypothesis. This means that there is a difference in salmon growth rate when fed a vegetarian or carnivorous diet. 
+
+
+#Scenario 4
+#a)State the null and alternative hypothesis
+null hypothesis: there is no interaction between symptoms and the trophic level of the individual
+alternative hypothesis: there is an interaction between symptoms and the trophic level of the individual
+
+#b)Create a histogram
+```{r}
+first.trophic=c(133,100,17)
+top.predator=c(4,61,35)
+my.data=data.frame(first.trophic, top.predator)
+```
+
+#c)Explain what type of test should be used to test the hypothesis
+In order to test the hypothesis, a Chi-squared test should be used
+
+#d)Run the appropriate test, and display the summary output
+```{r}
+chisq.test(my.data)
+```
+#e)Explicitely state the critical and observed value of the test statistic
+```{r}
+qt(0.95,2)
+observed=89.253
+```
+#f)Indicate what conclusion you would draw from the hypothesis test
+The p-value is small than 0.05, therefore we reject the null hypothesis. This means that there is an interaction between symptoms and trophic levels.
